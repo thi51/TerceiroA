@@ -19,5 +19,10 @@ namespace AppTerceiroA
         {
             txtNome.Text = "Parabens turma, tudo certo!";
         }
+
+        private void btnTeste_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
