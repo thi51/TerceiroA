@@ -15,14 +15,18 @@ namespace AppTerceiroA
             InitializeComponent();
         }
 
-        private void btnSalvar_Clicked(object sender, EventArgs e)
+        async private void btnSalvar_Clicked(object sender, EventArgs e)
         {
-            txtNome.Text = "Parabens turma, tudo certo!";
-        }
+            MySqlConnection conn = new MySqlConnection(Conexao.strConexao);
+            MySqlCommand insereNome = new MySqlCommand(ComandoSQL.insereNome, conn);
 
-        private void btnTeste_Clicked(object sender, EventArgs e)
-        {
+            insereNome.Parameters.AddWithValue("@nome", txtNome.Text);
 
+            conn.Open();
+            insereNome.ExecuteNonQuery();
+            conn.Close();
+            txtNome.Text = "";
+            await DisplayAlert("Atenção", "Nome inserido com sucesso!", "Ok");
         }
     }
 }
